@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Ubuntu", sans-serif;
+  /* border: 1px solid white; */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+:root {
+  --black: black;
+  --lightorange: #ffbe5c;
+  --ocre: #b37e2e;
+}
+
+body {
+  width: 100%;
+  background-color: var(--black);
+  color: white;
+}
+
+.section-container {
+  background-color: var(--black);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.header-container {
+  position: sticky;
+  top: 0%;
+  z-index: 2;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 50px;
+}
+
+.logo-container,
+.navbar-container {
+  height: 80%;
+  display: flex;
+}
+
+.logo-container img {
+  height: inherit;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+}
+
+li img {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- HERO ---- */
+
+.hero {
+  width: 100%;
+  height: 50vh;
+  background-image: url(/assets/pexels-vishnu-r-nair-1105666.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  animation: changeHeroColor 3s infinite alternate;
+}
+
+@keyframes changeHeroColor {
+  0% {
+    backdrop-filter: hue-rotate(0deg) brightness(0.5);
+  }
+  25% {
+    backdrop-filter: hue-rotate(45deg) brightness(0.7);
+  }
+  50% {
+    backdrop-filter: hue-rotate(90deg) brightness(0.7);
+  }
+  75% {
+    backdrop-filter: hue-rotate(135deg) brightness(0.7);
+  }
+  100% {
+    backdrop-filter: hue-rotate(180deg) brightness(0.7);
+  }
+}
+
+.hero div {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-slogan {
+  font-size: 48px;
+  z-index: 1;
+}
+
+.hero-btn {
+  width: 200px;
+  height: 50px;
+  background-color: var(--lightorange);
+  border-radius: 20px;
+  border: none;
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+  box-shadow: 1px 1px 24px 5px rgba(0, 0, 0, 0.71);
+  -webkit-box-shadow: 1px 1px 24px 5px rgba(0, 0, 0, 0.71);
+  -moz-box-shadow: 1px 1px 24px 5px rgba(0, 0, 0, 0.71);
+  z-index: 1;
+}
+
+.hero-btn a {
+  color: var(--black);
+  font-size: 22px;
+}
+
+.hero-btn:hover {
+  background-color: white;
+}
+
+/* ----- SECTION DE FILTRADO ----- */
+
+.filter-section {
+  display: flex;
+  width: 100%;
+
+  padding: 0 50px;
+  position: relative;
+}
+
+.filter-selection {
+  width: 90%;
+  height: 100px;
+  background-color: var(--black);
+  border-radius: 35px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: -50px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  box-shadow: 1px 0px 199px 0px rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 1px 0px 199px 0px rgba(255, 255, 255, 0.2) inset;
+  -moz-box-shadow: 1px 0px 199px 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-title {
+  color: var(--lightorange);
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.list-selector {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: white;
+  color: var(--black);
+  font-size: 16px;
+}
+
+/* ----- SECTION DE RESULTADO ----- */
+
+.filter-results {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+  padding: 100px 50px;
+}
+
+.card-show {
+  width: 400px;
+  height: 300px;
+}
+
+.card-data-img {
+  height: 220px;
+  width: 100%;
+  background-image: url(/assets/event-img/arch-enemy.jpg);
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.card-data-info {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-radius: 0 0 20px 20px;
+  background-color: var(--ocre);
+}
+
+.card-data-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-show-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.card-data-info-btn {
+  width: 120px;
+  height: 50px;
+  background-color: var(--black);
+  border-radius: 20px;
+  border: none;
+  font-family: "Ubuntu", sans-serif;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ----- FOOTER ----- */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer-link {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0 50px;
+}
+
+.footer-link a,
+.footer-rrss a {
+  color: white;
+}
+
+.footer-rrss {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 0 50px;
+}
+
+.footer-rrss div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+}

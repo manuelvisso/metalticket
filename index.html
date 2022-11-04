@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/metalticket.png" />
+    <link rel="stylesheet" href="style.css" />
+    <title>MetalTicket</title>
+  </head>
+  <body>
+    <div class="section-container header-container">
+      <header class="header">
+        <div class="logo-container">
+          <img src="/assets/metalticket-removebg.png" alt="" />
+        </div>
+        <div class="navbar-container">
+          <nav>
+            <ul>
+              <li>
+                <a href="#inicio"
+                  ><img src="/assets/usuario.png" alt="Iniciar sesión"
+                /></a>
+              </li>
+              <li>
+                <a href="#inicio"
+                  ><img src="/assets/boleto.png" alt="Iniciar sesión"
+                /></a>
+              </li>
+              <li>
+                <a href="#inicio"
+                  ><img
+                    src="/assets/carrito-de-compras.png"
+                    alt="Iniciar sesión"
+                /></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+    <div class="section-container">
+      <section class="hero">
+        <div>
+          <p class="hero-slogan">¡Música que resuena!</p>
+        </div>
+        <div>
+          <button type="button" class="hero-btn">
+            <a href="#reg">Registrarse</a>
+          </button>
+        </div>
+      </section>
+    </div>
+    <div class="section-container">
+      <section class="filter-section">
+        <div class="filter-selection">
+          <div class="filter filterA">
+            <p class="filter-title">Géneros</p>
+            <select name="Género" id="genero" class="list-selector">
+              <option value="" class="genero-default"></option>
+              <option value="">Todos</option>
+              <option value="">Alternativo</option>
+              <option value="">Black Metal</option>
+              <option value="">Death Metal</option>
+              <option value="">Folk Metal</option>
+              <option value="">Gothic Metal</option>
+              <option value="">Grindcore</option>
+              <option value="">Heavy Metal</option>
+              <option value="">Industrial</option>
+              <option value="">Nu Metal</option>
+              <option value="">Power Metal</option>
+              <option value="">Thrash Metal</option>
+              <option value="">Otros</option>
+            </select>
+          </div>
+          <div class="filter filterB">
+            <p class="filter-title">Ciudad</p>
+            <select name="Ciudad" id="ciudad" class="list-selector">
+              <option value="" class="ciudad-default"></option>
+              <option value="">Todos</option>
+              <option value="">CABA</option>
+              <option value="">Buenos Aires</option>
+              <option value="">Córdoba</option>
+              <option value="">Rosario</option>
+            </select>
+          </div>
+          <div class="filter filterC">
+            <p class="filter-title">Recinto</p>
+            <select name="Recinto" id="recinto" class="list-selector">
+              <option value="" class="recinto-default"></option>
+              <option value="">Todos</option>
+              <option value="">CC de Rosario</option>
+              <option value="">Fernet Club</option>
+              <option value="">Konex</option>
+              <option value="">Luna Park</option>
+              <option value="">River Plate</option>
+              <option value="">Uniclub</option>
+            </select>
+          </div>
+        </div>
+        <div class="render-card"></div>
+      </section>
+      <div class="section-container">
+        <section class="filter-results">
+          <!-- card para renderizar -->
+          <article class="card-show">
+            <div class="card-data-img"></div>
+            <div class="card-data-info">
+              <div class="card-data-info-text">
+                <p class="card-show-title">Arch Enemy</p>
+                <p class="card-show-date">21/11/2022</p>
+              </div>
+              <div class="card-data-info-btn">
+                <button type="button" class="card-data-info-btn">
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="card-show">
+            <div class="card-data-img"></div>
+            <div class="card-data-info">
+              <div class="card-data-info-text">
+                <p class="card-show-title">Arch Enemy</p>
+                <p class="card-show-date">21/11/2022</p>
+              </div>
+              <div class="card-data-info-btn">
+                <button type="button" class="card-data-info-btn">
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="card-show">
+            <div class="card-data-img"></div>
+            <div class="card-data-info">
+              <div class="card-data-info-text">
+                <p class="card-show-title">Arch Enemy</p>
+                <p class="card-show-date">21/11/2022</p>
+              </div>
+              <div class="card-data-info-btn">
+                <button type="button" class="card-data-info-btn">
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="card-show">
+            <div class="card-data-img"></div>
+            <div class="card-data-info">
+              <div class="card-data-info-text">
+                <p class="card-show-title">Arch Enemy</p>
+                <p class="card-show-date">21/11/2022</p>
+              </div>
+              <div class="card-data-info-btn">
+                <button type="button" class="card-data-info-btn">
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="card-show">
+            <div class="card-data-img"></div>
+            <div class="card-data-info">
+              <div class="card-data-info-text">
+                <p class="card-show-title">Arch Enemy</p>
+                <p class="card-show-date">21/11/2022</p>
+              </div>
+              <div class="card-data-info-btn">
+                <button type="button" class="card-data-info-btn">
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="card-show">
+            <div class="card-data-img"></div>
+            <div class="card-data-info">
+              <div class="card-data-info-text">
+                <p class="card-show-title">Arch Enemy</p>
+                <p class="card-show-date">21/11/2022</p>
+              </div>
+              <div class="card-data-info-btn">
+                <button type="button" class="card-data-info-btn">
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+    <div class="section-container">
+      <footer>
+        <div class="footer-link">
+          <a href="">Términos de Uso</a>
+          <a href="">Política de Privacidad</a>
+          <a href="">Soporte</a>
+        </div>
+        <div class="footer-rrss">
+          <p>Manuel Visso</p>
+          <div>
+            <a href=""><img src="/assets/github (1).png" alt="" /></a>
+            <a href=""><img src="/assets/email (1).png" alt="" /></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
