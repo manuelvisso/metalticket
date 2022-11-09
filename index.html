@@ -18,20 +18,17 @@
           <nav>
             <ul>
               <li>
-                <a href="#inicio"
-                  ><img src="/assets/usuario.png" alt="Iniciar sesión"
-                /></a>
+                <a href="#inicio">Inicio</a>
+              </li>
+              <li>
+                <a href="#eventos">Eventos</a>
+              </li>
+              <li>
+                <a href="#inicio">Iniciar Sesión</a>
               </li>
               <li>
                 <a href="#inicio"
-                  ><img src="/assets/boleto.png" alt="Iniciar sesión"
-                /></a>
-              </li>
-              <li>
-                <a href="#inicio"
-                  ><img
-                    src="/assets/carrito-de-compras.png"
-                    alt="Iniciar sesión"
+                  ><img src="/assets/carrito-de-compras.png" alt="Ver carrito"
                 /></a>
               </li>
             </ul>
@@ -63,12 +60,12 @@
               <option value="">Black Metal</option>
               <option value="">Death Metal</option>
               <option value="">Folk Metal</option>
-              <option value="">Gothic Metal</option>
               <option value="">Grindcore</option>
               <option value="">Heavy Metal</option>
               <option value="">Industrial</option>
               <option value="">Nu Metal</option>
               <option value="">Power Metal</option>
+              <option value="">Symphonic Metal</option>
               <option value="">Thrash Metal</option>
               <option value="">Otros</option>
             </select>
@@ -78,7 +75,6 @@
             <select name="Ciudad" id="ciudad" class="list-selector">
               <option value="" class="ciudad-default"></option>
               <option value="">Todos</option>
-              <option value="">CABA</option>
               <option value="">Buenos Aires</option>
               <option value="">Córdoba</option>
               <option value="">Rosario</option>
@@ -91,10 +87,10 @@
               <option value="">Todos</option>
               <option value="">CC de Rosario</option>
               <option value="">Fernet Club</option>
-              <option value="">Konex</option>
               <option value="">Luna Park</option>
               <option value="">River Plate</option>
               <option value="">Uniclub</option>
+              <option value="">Teatro Flores</option>
             </select>
           </div>
         </div>
@@ -102,91 +98,27 @@
       </section>
       <div class="section-container">
         <section class="filter-results">
-          <!-- card para renderizar -->
-          <article class="card-show">
-            <div class="card-data-img"></div>
-            <div class="card-data-info">
-              <div class="card-data-info-text">
-                <p class="card-show-title">Arch Enemy</p>
-                <p class="card-show-date">21/11/2022</p>
+          <h2 class="eventos-title">Eventos</h2>
+          <div class="cards-container">
+            <!-- card para renderizar -->
+            <!-- <article class="card-show">
+              <div class="card-data-img">
+                <img src="/assets/event-img/arch-enemy.jpg" alt="" />
               </div>
-              <div class="card-data-info-btn">
-                <button type="button" class="card-data-info-btn">
-                  Comprar
-                </button>
+              <div class="card-data-info">
+                <div class="card-data-info-text">
+                  <p class="card-show-title">Arch Enemy</p>
+                  <p class="card-show-date">21/11/2022</p>
+                  <p class="card-show-price">$ 6000</p>
+                </div>
+                <div class="card-btn-container">
+                  <button type="button" class="card-data-info-btn">
+                    Comprar
+                  </button>
+                </div>
               </div>
-            </div>
-          </article>
-          <article class="card-show">
-            <div class="card-data-img"></div>
-            <div class="card-data-info">
-              <div class="card-data-info-text">
-                <p class="card-show-title">Arch Enemy</p>
-                <p class="card-show-date">21/11/2022</p>
-              </div>
-              <div class="card-data-info-btn">
-                <button type="button" class="card-data-info-btn">
-                  Comprar
-                </button>
-              </div>
-            </div>
-          </article>
-          <article class="card-show">
-            <div class="card-data-img"></div>
-            <div class="card-data-info">
-              <div class="card-data-info-text">
-                <p class="card-show-title">Arch Enemy</p>
-                <p class="card-show-date">21/11/2022</p>
-              </div>
-              <div class="card-data-info-btn">
-                <button type="button" class="card-data-info-btn">
-                  Comprar
-                </button>
-              </div>
-            </div>
-          </article>
-          <article class="card-show">
-            <div class="card-data-img"></div>
-            <div class="card-data-info">
-              <div class="card-data-info-text">
-                <p class="card-show-title">Arch Enemy</p>
-                <p class="card-show-date">21/11/2022</p>
-              </div>
-              <div class="card-data-info-btn">
-                <button type="button" class="card-data-info-btn">
-                  Comprar
-                </button>
-              </div>
-            </div>
-          </article>
-          <article class="card-show">
-            <div class="card-data-img"></div>
-            <div class="card-data-info">
-              <div class="card-data-info-text">
-                <p class="card-show-title">Arch Enemy</p>
-                <p class="card-show-date">21/11/2022</p>
-              </div>
-              <div class="card-data-info-btn">
-                <button type="button" class="card-data-info-btn">
-                  Comprar
-                </button>
-              </div>
-            </div>
-          </article>
-          <article class="card-show">
-            <div class="card-data-img"></div>
-            <div class="card-data-info">
-              <div class="card-data-info-text">
-                <p class="card-show-title">Arch Enemy</p>
-                <p class="card-show-date">21/11/2022</p>
-              </div>
-              <div class="card-data-info-btn">
-                <button type="button" class="card-data-info-btn">
-                  Comprar
-                </button>
-              </div>
-            </div>
-          </article>
+            </article> -->
+          </div>
         </section>
       </div>
     </div>
@@ -206,5 +138,7 @@
         </div>
       </footer>
     </div>
+    <script src="/eventos.js"></script>
+    <script src="/main.js"></script>
   </body>
 </html>

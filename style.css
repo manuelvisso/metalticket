@@ -65,12 +65,25 @@ nav ul {
   justify-content: center;
 }
 
-li img {
-  height: 35px;
-  width: 35px;
+li a {
+  color: var(--lightorange);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+li img {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 992px) {
+  nav ul {
+    display: none;
+  }
 }
 
 /* ---- HERO ---- */
@@ -208,13 +221,24 @@ li img {
 
 /* ----- SECTION DE RESULTADO ----- */
 
+.eventos-title {
+  font-size: 30px;
+}
+
 .filter-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 100px 50px;
+}
+
+.cards-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 35px;
-  padding: 100px 50px;
 }
 
 .card-show {
@@ -223,20 +247,24 @@ li img {
 }
 
 .card-data-img {
-  height: 220px;
+  height: 210px;
   width: 100%;
-  background-image: url(/assets/event-img/arch-enemy.jpg);
-  background-position: center;
-  background-size: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.card-data-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 20px 20px 0 0;
 }
 
 .card-data-info {
   width: 100%;
-  height: 80px;
+  height: 90px;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border-radius: 0 0 20px 20px;
   background-color: var(--ocre);
 }
@@ -244,12 +272,22 @@ li img {
 .card-data-info-text {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 
 .card-show-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
+}
+
+.card-show-price {
+  font-size: 20px;
+}
+
+.card-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-data-info-btn {
@@ -262,6 +300,43 @@ li img {
   color: white;
   font-size: 20px;
   cursor: pointer;
+}
+
+.card-data-info-btn:hover {
+  color: var(--lightorange);
+  font-size: 22px;
+  animation: shakeBtn 0.4s infinite reverse;
+  transition: all;
+}
+
+@keyframes shakeBtn {
+  0% {
+    transform: rotate(0deg);
+  }
+  12.5% {
+    transform: rotate(2deg);
+  }
+  25% {
+    transform: rotate(4deg);
+  }
+  37.5% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  62.5% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(-4deg);
+  }
+  87.5% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* ----- FOOTER ----- */
