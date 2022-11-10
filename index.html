@@ -54,7 +54,12 @@
           <div class="filter filterA">
             <p class="filter-title">Géneros</p>
             <select name="Género" id="genero" class="list-selector">
-              <option value="" class="genero-default"></option>
+              <option
+                value=""
+                selected
+                disabled
+                class="genero-default"
+              ></option>
               <option value="">Todos</option>
               <option value="">Alternativo</option>
               <option value="">Black Metal</option>
@@ -73,7 +78,12 @@
           <div class="filter filterB">
             <p class="filter-title">Ciudad</p>
             <select name="Ciudad" id="ciudad" class="list-selector">
-              <option value="" class="ciudad-default"></option>
+              <option
+                value=""
+                selected
+                disabled
+                class="ciudad-default"
+              ></option>
               <option value="">Todos</option>
               <option value="">Buenos Aires</option>
               <option value="">Córdoba</option>
@@ -83,7 +93,12 @@
           <div class="filter filterC">
             <p class="filter-title">Recinto</p>
             <select name="Recinto" id="recinto" class="list-selector">
-              <option value="" class="recinto-default"></option>
+              <option
+                value=""
+                selected
+                disabled
+                class="recinto-default"
+              ></option>
               <option value="">Todos</option>
               <option value="">CC de Rosario</option>
               <option value="">Fernet Club</option>
@@ -100,6 +115,11 @@
         <section class="filter-results">
           <h2 class="eventos-title">Eventos</h2>
           <div class="cards-container">
+            <!-- mensaje de error para renderiza -->
+            <!-- <article class="error-msg">
+              <h3>No se encuentran resultados para la busqueda realizada</h3>
+              <h4>Por favor, intente una nueva busqueda</h4>
+            </article> -->
             <!-- card para renderizar -->
             <!-- <article class="card-show">
               <div class="card-data-img">

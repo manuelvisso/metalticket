@@ -225,6 +225,17 @@ li img {
   font-size: 30px;
 }
 
+.error-msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-msg * {
+  color: var(--lightorange);
+}
+
 .filter-results {
   display: flex;
   flex-direction: column;

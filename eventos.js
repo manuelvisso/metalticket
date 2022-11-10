@@ -74,7 +74,7 @@ const catalogoEventos = [
     recinto: "Uniclub",
     precio: 3500,
     destacado: false,
-    img: "./assets/event-img/carcass.jpg",
+    img: "./assets/event-img/carcass.jpeg",
   },
   {
     id: 8,
@@ -174,7 +174,7 @@ const catalogoEventos = [
     recinto: "Fernet Club",
     precio: 3500,
     destacado: false,
-    img: "./assets/event-img/carcass.jpg",
+    img: "./assets/event-img/carcass.jpeg",
   },
   {
     id: 17,
