@@ -222,10 +222,7 @@ const catalogoEventos = [
   },
 ];
 
-//renderiza los eventos destacados al cargar la página
+//renderiza los eventos al inicar la página
 const initialRender = () => {
-  const eventosDestacados = catalogoEventos.filter(
-    (el) => el.destacado === true
-  );
-  cardsContainer.innerHTML = eventosDestacados.map(renderCardShow).join("");
+  cardsContainer.innerHTML = catalogoEventos.map(renderCardShow).join("");
 };

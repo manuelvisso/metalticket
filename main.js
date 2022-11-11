@@ -4,10 +4,6 @@ const ciudadSelector = document.querySelector("#ciudad");
 const recintoSelector = document.querySelector("#recinto");
 const listSelector = document.querySelectorAll(".list-selector");
 
-// localStorage.setItem("busqueda", JSON.stringify("busqueda"));
-
-// const activeFilter = JSON.parse(localStorage.getItem("evento")) || null;
-
 const renderCardShow = (show) => {
   const { artista, fecha, precio, img, ciudad } = show;
 
@@ -19,9 +15,9 @@ const renderCardShow = (show) => {
     <div class="card-data-info">
         <div class="card-data-info-text">
         <p class="card-show-title">${artista}</p>
+        <p class="card-show-ciudad">${ciudad}</p>
         <p class="card-show-date">${fecha}</p>
         <p class="card-show-price">$ ${precio}</p>
-        <p class="card-show-ciudad">$ ${ciudad}</p>
         </div>
         <div class="card-btn-container">
         <button type="button" class="card-data-info-btn">
