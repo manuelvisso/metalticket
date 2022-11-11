@@ -3,6 +3,7 @@ const generoSelector = document.querySelector("#genero");
 const ciudadSelector = document.querySelector("#ciudad");
 const recintoSelector = document.querySelector("#recinto");
 const listSelector = document.querySelectorAll(".list-selector");
+const deleteFilterBtn = document.querySelector(".btn-filter-bin");
 
 const renderCardShow = (show) => {
   const { artista, fecha, precio, img, ciudad } = show;
@@ -65,11 +66,19 @@ const filterSelection = () => {
   filterResults(selectedOption[0], selectedOption[1], selectedOption[2]);
 };
 
+const deleteFilter = () => {
+  generoSelector.value = "";
+  ciudadSelector.value = "";
+  recintoSelector.value = "";
+  initialRender();
+};
+
 const init = () => {
   initialRender();
   generoSelector.addEventListener("change", filterSelection);
   ciudadSelector.addEventListener("change", filterSelection);
   recintoSelector.addEventListener("change", filterSelection);
+  deleteFilterBtn.addEventListener("click", deleteFilter);
 };
 
 init();

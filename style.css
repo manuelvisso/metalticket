@@ -143,6 +143,7 @@ li img {
 .hero-slogan {
   font-size: 48px;
   z-index: 1;
+  text-align: center;
 }
 
 .hero-btn {
@@ -219,6 +220,22 @@ li img {
   font-size: 16px;
 }
 
+.bin-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn-filter-bin {
+  background-color: transparent;
+  border: none;
+}
+
+.filter-bin {
+  width: 20px;
+  padding-top: 25px;
+  cursor: pointer;
+}
+
 /* ----- SECTION DE RESULTADO ----- */
 
 .eventos-title {
@@ -234,6 +251,8 @@ li img {
 
 .error-msg * {
   color: var(--lightorange);
+  text-align: center;
+  line-height: 1.5;
 }
 
 .filter-results {
