@@ -46,8 +46,6 @@ const filterResults = (genero, ciudad, recinto) => {
       el.recinto.includes(recinto)
   );
 
-  console.log(filterSelected);
-
   if (filterSelected.length > 0) {
     cardsContainer.innerHTML = filterSelected.map(renderCardShow).join("");
     return;
