@@ -41,12 +41,6 @@ const filtrarTodo = () => {
   cardsContainer.innerHTML = catalogoEventos.map(renderCardShow).join("");
 };
 
-// const applyTodo = () => {
-//   optionA = generoSelector.options[generoSelector.selectedIndex];
-
-//   if(optionA.text === "T")
-// };
-
 const filtrarPorGenero = (valor) => {
   const filtrarGenero = catalogoEventos.filter((el) =>
     el.genero.includes(valor)
@@ -72,7 +66,9 @@ const generoSelection = () => {
 };
 
 const filtrarPorCiudad = (valor) => {
-  const filtrarCiudad = catalogoEventos.filter((el) => el.ciudad === valor);
+  const filtrarCiudad = catalogoEventos.filter((el) =>
+    el.ciudad.includes(valor)
+  );
 
   if (filtrarCiudad.length > 0) {
     cardsContainer.innerHTML = filtrarCiudad.map(renderCardShow).join("");
@@ -84,13 +80,19 @@ const filtrarPorCiudad = (valor) => {
 
 const ciudadSelection = () => {
   var selecetedOptionCiudad =
-    ciudadSelector.options[ciudadSelector.selectedIndex];
+    ciudadSelector.options[ciudadSelector.selectedIndex].text;
 
-  filtrarPorCiudad(selecetedOptionCiudad.text);
+  if (selecetedOptionCiudad !== "Todos") {
+    filtrarPorCiudad(selecetedOptionCiudad);
+  } else {
+    filtrarTodo();
+  }
 };
 
 const filtrarPorRecinto = (valor) => {
-  const filtrarRecinto = catalogoEventos.filter((el) => el.recinto === valor);
+  const filtrarRecinto = catalogoEventos.filter((el) =>
+    el.recinto.includes(valor)
+  );
 
   if (filtrarRecinto.length > 0) {
     cardsContainer.innerHTML = filtrarRecinto.map(renderCardShow).join("");
@@ -102,9 +104,13 @@ const filtrarPorRecinto = (valor) => {
 
 const recintoSelection = () => {
   var selecetedOptionRecinto =
-    recintoSelector.options[recintoSelector.selectedIndex];
+    recintoSelector.options[recintoSelector.selectedIndex].text;
 
-  filtrarPorRecinto(selecetedOptionRecinto.text);
+  if (selecetedOptionRecinto !== "Todos") {
+    filtrarPorRecinto(selecetedOptionRecinto);
+  } else {
+    filtrarTodo();
+  }
 };
 
 const applySelection = () => {
