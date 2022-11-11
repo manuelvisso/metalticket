@@ -4,6 +4,10 @@ const ciudadSelector = document.querySelector("#ciudad");
 const recintoSelector = document.querySelector("#recinto");
 const listSelector = document.querySelectorAll(".list-selector");
 
+// localStorage.setItem("busqueda", JSON.stringify("busqueda"));
+
+// const activeFilter = JSON.parse(localStorage.getItem("evento")) || null;
+
 const renderCardShow = (show) => {
   const { artista, fecha, precio, img, ciudad } = show;
 
@@ -17,7 +21,7 @@ const renderCardShow = (show) => {
         <p class="card-show-title">${artista}</p>
         <p class="card-show-date">${fecha}</p>
         <p class="card-show-price">$ ${precio}</p>
-        <p class="card-show-price">$ ${ciudad}</p>
+        <p class="card-show-ciudad">$ ${ciudad}</p>
         </div>
         <div class="card-btn-container">
         <button type="button" class="card-data-info-btn">
@@ -31,97 +35,45 @@ const renderCardShow = (show) => {
 const renderErrorMsg = () => {
   cardsContainer.innerHTML = `
   <article class="error-msg">
-    <h3>No se encuentran resultados para la busqueda realizada</h3>
+    <h3>No se encuentran resultados para la busqueda realizada.</h3>
     <h4>Por favor, intente una nueva busqueda</h4>
   </article>
     `;
 };
 
-const filtrarTodo = () => {
-  cardsContainer.innerHTML = catalogoEventos.map(renderCardShow).join("");
-};
-
-const filtrarPorGenero = (valor) => {
-  const filtrarGenero = catalogoEventos.filter((el) =>
-    el.genero.includes(valor)
+const filterResults = (genero, ciudad, recinto) => {
+  const filterSelected = catalogoEventos.filter(
+    (el) =>
+      el.genero.includes(genero) &&
+      el.ciudad.includes(ciudad) &&
+      el.recinto.includes(recinto)
   );
 
-  if (filtrarGenero.length > 0) {
-    cardsContainer.innerHTML = filtrarGenero.map(renderCardShow).join("");
+  console.log(filterSelected);
+
+  if (filterSelected.length > 0) {
+    cardsContainer.innerHTML = filterSelected.map(renderCardShow).join("");
     return;
   } else {
     renderErrorMsg();
   }
 };
 
-const generoSelection = () => {
-  var selecetedOptionGenero =
-    generoSelector.options[generoSelector.selectedIndex].text;
+const filterSelection = () => {
+  const selectedOption = [
+    generoSelector.options[generoSelector.selectedIndex].value,
+    ciudadSelector.options[ciudadSelector.selectedIndex].value,
+    recintoSelector.options[recintoSelector.selectedIndex].value,
+  ];
 
-  if (selecetedOptionGenero !== "Todos") {
-    filtrarPorGenero(selecetedOptionGenero);
-  } else {
-    filtrarTodo();
-  }
-};
-
-const filtrarPorCiudad = (valor) => {
-  const filtrarCiudad = catalogoEventos.filter((el) =>
-    el.ciudad.includes(valor)
-  );
-
-  if (filtrarCiudad.length > 0) {
-    cardsContainer.innerHTML = filtrarCiudad.map(renderCardShow).join("");
-    return;
-  } else {
-    renderErrorMsg();
-  }
-};
-
-const ciudadSelection = () => {
-  var selecetedOptionCiudad =
-    ciudadSelector.options[ciudadSelector.selectedIndex].text;
-
-  if (selecetedOptionCiudad !== "Todos") {
-    filtrarPorCiudad(selecetedOptionCiudad);
-  } else {
-    filtrarTodo();
-  }
-};
-
-const filtrarPorRecinto = (valor) => {
-  const filtrarRecinto = catalogoEventos.filter((el) =>
-    el.recinto.includes(valor)
-  );
-
-  if (filtrarRecinto.length > 0) {
-    cardsContainer.innerHTML = filtrarRecinto.map(renderCardShow).join("");
-    return;
-  } else {
-    renderErrorMsg();
-  }
-};
-
-const recintoSelection = () => {
-  var selecetedOptionRecinto =
-    recintoSelector.options[recintoSelector.selectedIndex].text;
-
-  if (selecetedOptionRecinto !== "Todos") {
-    filtrarPorRecinto(selecetedOptionRecinto);
-  } else {
-    filtrarTodo();
-  }
-};
-
-const applySelection = () => {
-  generoSelector.addEventListener("change", generoSelection);
-  ciudadSelector.addEventListener("change", ciudadSelection);
-  recintoSelector.addEventListener("change", recintoSelection);
+  filterResults(selectedOption[0], selectedOption[1], selectedOption[2]);
 };
 
 const init = () => {
   initialRender();
-  applySelection();
+  generoSelector.addEventListener("change", filterSelection);
+  ciudadSelector.addEventListener("change", filterSelection);
+  recintoSelector.addEventListener("change", filterSelection);
 };
 
 init();

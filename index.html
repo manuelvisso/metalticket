@@ -54,58 +54,40 @@
           <div class="filter filterA">
             <p class="filter-title">Géneros</p>
             <select name="Género" id="genero" class="list-selector">
-              <option
-                value=""
-                selected
-                disabled
-                class="genero-default"
-              ></option>
-              <option value="">Todos</option>
-              <option value="">Alternativo</option>
-              <option value="">Black Metal</option>
-              <option value="">Death Metal</option>
-              <option value="">Folk Metal</option>
-              <option value="">Grindcore</option>
-              <option value="">Heavy Metal</option>
-              <option value="">Industrial</option>
-              <option value="">Nu Metal</option>
-              <option value="">Power Metal</option>
-              <option value="">Symphonic Metal</option>
-              <option value="">Thrash Metal</option>
-              <option value="">Otros</option>
+              <option value="" selected>Todos</option>
+              <option value="Alternativo">Alternativo</option>
+              <option value="Black Metal">Black Metal</option>
+              <option value="Death Metal">Death Metal</option>
+              <option value="Folk Metal">Folk Metal</option>
+              <option value="Grindcore">Grindcore</option>
+              <option value="Heavy Metal">Heavy Metal</option>
+              <option value="Industrial">Industrial</option>
+              <option value="Nu Metal">Nu Metal</option>
+              <option value="Power Metal">Power Metal</option>
+              <option value="Symphonic Metal">Symphonic Metal</option>
+              <option value="Thrash Metal">Thrash Metal</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div class="filter filterB">
             <p class="filter-title">Ciudad</p>
             <select name="Ciudad" id="ciudad" class="list-selector">
-              <option
-                value=""
-                selected
-                disabled
-                class="ciudad-default"
-              ></option>
-              <option value="">Todos</option>
-              <option value="">Buenos Aires</option>
-              <option value="">Córdoba</option>
-              <option value="">Rosario</option>
+              <option value="" selected>Todos</option>
+              <option value="Buenos Aires">Buenos Aires</option>
+              <option value="Córdoba">Córdoba</option>
+              <option value="Rosario">Rosario</option>
             </select>
           </div>
           <div class="filter filterC">
             <p class="filter-title">Recinto</p>
             <select name="Recinto" id="recinto" class="list-selector">
-              <option
-                value=""
-                selected
-                disabled
-                class="recinto-default"
-              ></option>
-              <option value="">Todos</option>
-              <option value="">CC de Rosario</option>
-              <option value="">Fernet Club</option>
-              <option value="">Luna Park</option>
-              <option value="">River Plate</option>
-              <option value="">Uniclub</option>
-              <option value="">Teatro Flores</option>
+              <option value="" selected>Todos</option>
+              <option value="CC de Rosario">CC de Rosario</option>
+              <option value="Fernet Club">Fernet Club</option>
+              <option value="Luna Park">Luna Park</option>
+              <option value="River Plate">River Plate</option>
+              <option value="Uniclub">Uniclub</option>
+              <option value="Teatro Flores">Teatro Flores</option>
             </select>
           </div>
         </div>
@@ -115,13 +97,13 @@
         <section class="filter-results">
           <h2 class="eventos-title">Eventos</h2>
           <div class="cards-container">
-            <!-- mensaje de error para renderiza -->
+            <!-- mensaje de error para renderizar -->
             <!-- <article class="error-msg">
               <h3>No se encuentran resultados para la busqueda realizada</h3>
               <h4>Por favor, intente una nueva busqueda</h4>
             </article> -->
             <!-- card para renderizar -->
-            <!-- <article class="card-show">
+            <article class="card-show">
               <div class="card-data-img">
                 <img src="/assets/event-img/arch-enemy.jpg" alt="" />
               </div>
@@ -130,6 +112,7 @@
                   <p class="card-show-title">Arch Enemy</p>
                   <p class="card-show-date">21/11/2022</p>
                   <p class="card-show-price">$ 6000</p>
+                  <p class="card-show-ciudad">Buenos Aires</p>
                 </div>
                 <div class="card-btn-container">
                   <button type="button" class="card-data-info-btn">
@@ -137,7 +120,7 @@
                   </button>
                 </div>
               </div>
-            </article> -->
+            </article>
           </div>
         </section>
       </div>
@@ -158,7 +141,7 @@
         </div>
       </footer>
     </div>
-    <script src="/eventos.js"></script>
-    <script src="/main.js"></script>
+    <!-- <script src="/eventos.js"></script>
+    <script src="/main.js"></script> -->
   </body>
 </html>
