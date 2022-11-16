@@ -10,6 +10,56 @@
   </head>
   <body>
     <div class="section-container header-container">
+      <div class="cart-container hide-cart">
+        <div>
+          <img class="cart-close" src="/assets/close.png" alt="" />
+        </div>
+        <p class="cart-title">Carrito de compras</p>
+        <div class="render-cart-container">
+          <!-- <article class="cart-card">
+            <img
+              class="cart-btn-delete" src="/assets/bin.png" alt="" srcset=""
+            />
+            <div class="cart-img-container">
+              <img src="/assets/event-img/arch-enemy.jpg" alt="" srcset="" />
+            </div>
+            <div class="render-cart-card">
+              <div class="card-data-info-text">
+                <p class="card-show-title">Arch Enemy</p>
+                <p class="card-show-ciudad">Buenos Aires</p>
+                <p class="card-show-date">21/11/2022</p>
+                <div class="qty-container">
+                  <img class="btn-menos" src="/assets/boton-menos.png" alt="" srcset=""
+                  />
+                  <p class="qty-text">0</p>
+                  <img class="btn-mas" src="/assets/boton-mas.png" alt="" srcset=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="card-show-price">$ 6000</p>
+            </div>
+          </article> -->
+        </div>
+        <div class="pricing-cart-container">
+          <div class="pricing-cart-title">
+            <p>Subtotal:</p>
+            <small>Service Charge:</small>
+            <p>Total:</p>
+          </div>
+          <div class="pricing-cart-amount">
+            <p>$ 18000</p>
+            <small>$ 1800</small>
+            <p>$ 19800</p>
+          </div>
+        </div>
+        <div class="cart-btn-comprar-container">
+          <button type="submit" class="cart-comprar-btn">
+            Realizar Compra
+          </button>
+        </div>
+      </div>
       <header class="header">
         <div class="logo-container">
           <img src="/assets/metalticket-removebg.png" alt="" />
@@ -27,14 +77,19 @@
                 <a href="#inicio">Iniciar Sesión</a>
               </li>
               <li>
-                <a href="#inicio"
-                  ><img src="/assets/carrito-de-compras.png" alt="Ver carrito"
-                /></a>
+                <div class="cart-qty-container">
+                  <p class="cart-qty">1</p>
+                </div>
+                <img
+                  class="icon-cart"
+                  src="/assets/carrito-de-compras.png"
+                  alt="Ver carrito"
+                />
               </li>
             </ul>
           </nav>
         </div>
-        <div class="cart-container">texto</div>
+
         <div class="overlay"></div>
       </header>
     </div>
@@ -112,8 +167,8 @@
           <div class="cards-container">
             <!-- mensaje de error para renderizar -->
             <!-- <article class="error-msg">
-              <h3>No se encuentran resultados para la busqueda realizada</h3>
-              <h4>Por favor, intente una nueva busqueda</h4>
+              <h3 class="error-msg-text">No se encuentran resultados para la busqueda realizada</h3>
+              <h4 class="error-msg-text">Por favor, intente una nueva busqueda</h4>
             </article> -->
             <!-- card para renderizar -->
             <!-- <article class="card-show">
@@ -128,7 +183,10 @@
                   <p class="card-show-price">$ 6000</p>
                 </div>
                 <div class="card-btn-container">
-                  <button type="button" class="card-data-info-btn">
+                  <button
+                    type="button"
+                    class="card-data-info-btn add-ticket-btn"
+                  >
                     Comprar
                   </button>
                 </div>
