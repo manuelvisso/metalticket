@@ -104,12 +104,12 @@ li a:hover,
 li img:hover {
   background-size: 100% 2px;
 }
-
+/* 
 @media screen and (max-width: 992px) {
   nav ul {
     display: none;
   }
-}
+} */
 
 .cart-qty-container {
   width: 15px;
@@ -264,6 +264,16 @@ li img:hover {
   animation: shakeBtn 0.3s infinite reverse;
 }
 
+.btn-disabled {
+  cursor: not-allowed;
+  background-color: grey;
+}
+
+.btn-disabled:hover {
+  cursor: not-allowed;
+  background-color: grey;
+  animation: none;
+}
 /* ---- HERO ---- */
 
 .hero {

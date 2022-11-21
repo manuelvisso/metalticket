@@ -10,6 +10,11 @@ const overlay = document.querySelector(".overlay");
 const cartContainer = document.querySelector(".cart-container");
 const body = document.body;
 const cartCardContainer = document.querySelector(".render-cart-container");
+const addItemBtn = document.querySelectorAll(".add-ticket-btn");
+const comprarBtn = document.querySelector(".cart-comprar-btn");
+const cartSubtotal = document.querySelector(".cart-subtotal");
+const cartServiceCharge = document.querySelector(".cart-service-charge");
+const cartTotal = document.querySelector(".cart-total");
 
 // SETEO LOCAL STORAGE
 
@@ -22,7 +27,7 @@ const saveLocalStorage = (cartList) => {
 // FILTRADO Y RENDERIZADO DE PRODUCTOS FILTRADOS
 
 const renderCardShow = (show) => {
-  const { artista, fecha, precio, img, ciudad } = show;
+  const { id, artista, fecha, precio, img, ciudad } = show;
 
   return `
   <article class="card-show">
@@ -37,7 +42,7 @@ const renderCardShow = (show) => {
         <p class="card-show-price">$ ${precio}</p>
         </div>
         <div class="card-btn-container">
-        <button type="button" class="card-data-info-btn add-ticket-btn">
+        <button type="button" class="card-data-info-btn add-ticket-btn" data-id=${id} data-img=${img} data-artista=${artista} data-ciudad=${ciudad} data-fecha=${fecha} data-precio=${precio}>
             Comprar
         </button>
         </div>
@@ -105,8 +110,16 @@ const hiddenCart = () => {
   }
 };
 
-const renderCartItem = (show) => {
-  const { artista, fecha, precio, img, ciudad } = show;
+const cartBtnStatus = () => {
+  if (!cart.length) {
+    comprarBtn.classList.add("btn-disabled");
+    return;
+  }
+  comprarBtn.classList.remove("btn-disabled");
+};
+
+const renderCartItem = (cartItem) => {
+  const { id, artista, fecha, precio, img, ciudad, cantidad } = cartItem;
 
   return `
     <article class="cart-card">
@@ -120,9 +133,9 @@ const renderCartItem = (show) => {
             <p class="card-show-ciudad">${ciudad}</p>
             <p class="card-show-date">${fecha}</p>
             <div class="qty-container">
-                <img class="btn-menos" src="/assets/boton-menos.png" alt="" srcset=""/>
-                <p class="qty-text">0</p>
-                <img class="btn-mas" src="/assets/boton-mas.png" alt="" srcset=""/>
+                <img class="btn-menos" data-id=${id} src="/assets/boton-menos.png" alt="" srcset=""/>
+                <p class="qty-text">${cantidad}</p>
+                <img class="btn-mas" data-id=${id} src="/assets/boton-mas.png" alt="" srcset=""/>
             </div>
         </div>
     </div>
@@ -134,31 +147,85 @@ const renderCartItem = (show) => {
 };
 
 const renderCart = () => {
-  if (cart.length > 0) {
-    cartCardContainer.innerHTML = cart.map(renderCardShow).join("");
-    return;
-  } else {
+  if (!cart.length) {
     cartCardContainer.innerHTML = `<p class="error-msg-text"">El carrito de compras está vacío</p>`;
+    return;
   }
+  cartCardContainer.innerHTML = cart.map(renderCartItem).join("");
+};
+
+const checkItem = (item) => {
+  cart.find((element) => element.id === item.id);
+};
+
+const sumItem = (item) => {
+  cart = cart.map((cartItem) => {
+    cartItem.id === item.id
+      ? { ...cartProduct, cantidad: cartItem.cantidad + 1 }
+      : cartItem;
+  });
+};
+
+const sumNewItem = (el) => {
+  cart = [...cart, { ...el, cantidad: 1 }];
 };
 
 const addItemCart = (e) => {
-  if (e.target.classList.contains("add-ticket-btn")) {
-    console.log("click");
+  if (!e.target.classList.contains("add-ticket-btn")) {
   }
+  const { id, artista, img, ciudad, precio, fecha } = e.target.dataset;
+
+  const item = itemData(id, artista, img, ciudad, precio, fecha);
+
+  if (checkItem(item)) {
+    sumItem(item);
+  } else {
+    sumNewItem(item);
+  }
+
+  saveLocalStorage(cart);
+  cartBtnStatus();
+  renderCart(cart);
+  renderCartValues();
 };
+
+const itemData = (id, artista, img, ciudad, precio, fecha) => {
+  return { id, artista, img, ciudad, precio, fecha };
+};
+
+const cartSubtotalAmount = () => {
+  return cart.reduce((a, b) => Number(a + b.precio) * Number(b.cantidad), 0);
+};
+
+const getSubtotal = () => {
+  cartSubtotal.innerHTML = `$ ${cartSubtotalAmount}`;
+};
+
+const getServiceCharge = () => {
+  cartServiceCharge.innerHTML = `$ ${(cartSubtotalAmount * 0, 10)}`;
+};
+
+const getTotal = () => {
+  cartTotal.innerHTML = `$ ${getSubtotal + getServiceCharge}`;
+};
+
+const renderCartValues = () => {};
 
 const init = () => {
   initialRender();
+
   generoSelector.addEventListener("change", filterSelection);
   ciudadSelector.addEventListener("change", filterSelection);
   recintoSelector.addEventListener("change", filterSelection);
   deleteFilterBtn.addEventListener("click", deleteFilter);
   iconCart.addEventListener("click", showCart);
   closeCart.addEventListener("click", hiddenCart);
-
-  saveLocalStorage(cart);
-  renderCart();
+  cardsContainer.addEventListener("click", addItemCart);
+  document.addEventListener("DOMContentLoaded", renderCart);
+  document.addEventListener("DOMContentLoaded", getSubtotal);
+  document.addEventListener("DOMContentLoaded", getServiceCharge);
+  document.addEventListener("DOMContentLoaded", getTotal);
+  cartBtnStatus();
 };
 
 init();
