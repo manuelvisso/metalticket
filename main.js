@@ -155,13 +155,13 @@ const renderCart = () => {
 };
 
 const checkItem = (item) => {
-  cart.find((element) => element.id === item.id);
+  return cart.find((element) => element.id === item.id);
 };
 
 const sumItem = (item) => {
   cart = cart.map((cartItem) => {
-    cartItem.id === item.id
-      ? { ...cartProduct, cantidad: cartItem.cantidad + 1 }
+    return cartItem.id === item.id
+      ? { ...cartItem, cantidad: cartItem.cantidad + 1 }
       : cartItem;
   });
 };
@@ -194,22 +194,22 @@ const itemData = (id, artista, img, ciudad, precio, fecha) => {
 };
 
 const cartSubtotalAmount = () => {
-  return cart.reduce((a, b) => Number(a + b.precio) * Number(b.cantidad), 0);
+  return cart.reduce((a, b) => a + Number(b.precio) * Number(b.cantidad), 0);
 };
 
-const getSubtotal = () => {
-  cartSubtotal.innerHTML = `$ ${cartSubtotalAmount}`;
+const cartServiceChargesAmount = () => {
+  return cartSubtotalAmount() * Number(0.1);
 };
 
-const getServiceCharge = () => {
-  cartServiceCharge.innerHTML = `$ ${(cartSubtotalAmount * 0, 10)}`;
+const cartTotalAmount = () => {
+  return cartSubtotalAmount() * Number(1.1);
 };
 
-const getTotal = () => {
-  cartTotal.innerHTML = `$ ${getSubtotal + getServiceCharge}`;
+const renderCartValues = () => {
+  cartSubtotal.innerHTML = `ARS ${cartSubtotalAmount()}`;
+  cartServiceCharge.innerHTML = `ARS ${cartServiceChargesAmount()}`;
+  cartTotal.innerHTML = `ARS ${cartTotalAmount()}`;
 };
-
-const renderCartValues = () => {};
 
 const init = () => {
   initialRender();
@@ -222,9 +222,10 @@ const init = () => {
   closeCart.addEventListener("click", hiddenCart);
   cardsContainer.addEventListener("click", addItemCart);
   document.addEventListener("DOMContentLoaded", renderCart);
-  document.addEventListener("DOMContentLoaded", getSubtotal);
-  document.addEventListener("DOMContentLoaded", getServiceCharge);
-  document.addEventListener("DOMContentLoaded", getTotal);
+  // document.addEventListener("DOMContentLoaded", getSubtotal);
+  // document.addEventListener("DOMContentLoaded", getServiceCharge);
+  // document.addEventListener("DOMContentLoaded", getTotal);
+  document.addEventListener("DOMContentLoaded", renderCartValues);
   cartBtnStatus();
 };
 
