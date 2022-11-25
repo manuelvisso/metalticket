@@ -141,6 +141,7 @@ li img:hover {
 
 .filter-icon-container {
   text-align: center;
+  padding-top: 15px;
 }
 
 .filter-icon {
@@ -493,6 +494,7 @@ li img:hover {
   align-items: center;
   justify-content: center;
   gap: 35px;
+  padding-bottom: 50px;
 }
 
 .card-show {
