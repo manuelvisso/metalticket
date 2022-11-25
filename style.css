@@ -122,9 +122,12 @@ li img:hover {
   visibility: hidden;
 }
 
-.cart-qty {
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: black;
-  text-align: center;
+
   font-size: 12px;
   font-weight: bold;
 }
@@ -144,7 +147,7 @@ li img:hover {
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  visibility: visible;
+  visibility: hidden;
 }
 
 .cart-title {
@@ -211,6 +214,10 @@ li img:hover {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+.qty-btn-disabled {
+  cursor: not-allowed;
 }
 
 .cart-btn-delete {

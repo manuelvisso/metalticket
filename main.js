@@ -15,6 +15,12 @@ const comprarBtn = document.querySelector(".cart-comprar-btn");
 const cartSubtotal = document.querySelector(".cart-subtotal");
 const cartServiceCharge = document.querySelector(".cart-service-charge");
 const cartTotal = document.querySelector(".cart-total");
+const cartPoint = document.querySelector(".cart-qty-container");
+const qtyControlContainer = document.querySelector(".qty-container");
+const cartBtnRestar = document.querySelector(".btn-menos");
+const cartBtnSumar = document.querySelector(".btn-mas");
+const cartBtnDelete = document.querySelector(".cart-btn-delete");
+const cartItemQty = document.querySelector(".cart-item-qty");
 
 // SETEO LOCAL STORAGE
 
@@ -42,7 +48,7 @@ const renderCardShow = (show) => {
         <p class="card-show-price">$ ${precio}</p>
         </div>
         <div class="card-btn-container">
-        <button type="button" class="card-data-info-btn add-ticket-btn" data-id=${id} data-img=${img} data-artista=${artista} data-ciudad=${ciudad} data-fecha=${fecha} data-precio=${precio}>
+        <button type="button" class="card-data-info-btn add-ticket-btn" data-id="${id}" data-img=${img} data-artista="${artista}" data-ciudad="${ciudad}" data-fecha="${fecha}" data-precio="${precio}">
             Comprar
         </button>
         </div>
@@ -123,9 +129,9 @@ const renderCartItem = (cartItem) => {
 
   return `
     <article class="cart-card">
-        <img class="cart-btn-delete" src="/assets/bin.png" alt="" srcset=""/>
+        <img class="cart-btn-delete" data-id=${id} src="/assets/bin.png" alt="" srcset=""/>
     <div class="cart-img-container">
-        <img src="${img}" alt="" srcset="" />
+        <img src=${img} alt="" srcset="" />
     </div>
     <div class="render-cart-card">
         <div class="card-data-info-text">
@@ -140,10 +146,23 @@ const renderCartItem = (cartItem) => {
         </div>
     </div>
     <div>
-        <p class="card-show-price">$ ${precio}</p>
+        <p class="card-show-price">ARS ${precio}</p>
     </div>
     </article>
   `;
+};
+
+const renderCartPoint = () => {
+  if (!cart.length) {
+    cartPoint.style.visibility = "hidden";
+  } else {
+    cartPoint.style.visibility = "visible";
+  }
+};
+
+const renderCartItemQty = () => {
+  const cartQty = cart.length;
+  cartItemQty.innerHTML = `${cartQty}`;
 };
 
 const renderCart = () => {
@@ -171,8 +190,7 @@ const sumNewItem = (el) => {
 };
 
 const addItemCart = (e) => {
-  if (!e.target.classList.contains("add-ticket-btn")) {
-  }
+  if (!e.target.classList.contains("add-ticket-btn")) return;
   const { id, artista, img, ciudad, precio, fecha } = e.target.dataset;
 
   const item = itemData(id, artista, img, ciudad, precio, fecha);
@@ -184,9 +202,11 @@ const addItemCart = (e) => {
   }
 
   saveLocalStorage(cart);
-  cartBtnStatus();
   renderCart(cart);
   renderCartValues();
+  renderCartPoint();
+  cartBtnStatus();
+  renderCartItemQty();
 };
 
 const itemData = (id, artista, img, ciudad, precio, fecha) => {
@@ -211,9 +231,66 @@ const renderCartValues = () => {
   cartTotal.innerHTML = `ARS ${cartTotalAmount()}`;
 };
 
+// MANEJO DE CANTIDADES Y VACIADO DEL CARRITO
+
+const restarQtyEntradas = (id) => {
+  const cartItemSelected = cart.find((item) => item.id === id);
+
+  if (cartItemSelected.cantidad === 0) {
+    cartBtnRestar.classList.add("qty-btn-disabled");
+    return;
+  } else {
+    cartItemSelected.cantidad -= 1;
+  }
+};
+
+const sumarQtyEntradas = (id) => {
+  const cartItemSelected = cart.find((item) => item.id === id);
+  cartItemSelected.cantidad += 1;
+};
+
+const deleteCartItem = (id) => {
+  const cartItemSelected = cart.find((item) => item.id === id);
+
+  cart = cart.filter((item) => item.id !== cartItemSelected.id);
+};
+
+const qtyEntradas = (e) => {
+  if (e.target.classList.contains("btn-menos")) {
+    restarQtyEntradas(e.target.dataset.id);
+  } else if (e.target.classList.contains("btn-mas")) {
+    sumarQtyEntradas(e.target.dataset.id);
+  } else if (e.target.classList.contains("cart-btn-delete")) {
+    deleteCartItem(e.target.dataset.id);
+  }
+
+  saveLocalStorage(cart);
+  cartBtnStatus();
+  renderCart(cart);
+  renderCartValues();
+  renderCartPoint();
+  renderCartValues();
+  renderCartItemQty();
+};
+
+// FINALIZAR COMPRA
+
+const finalizarCompra = () => {
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Su compra se realizó con éxito",
+    showConfirmButton: false,
+    timer: 2000,
+  });
+  setTimeout(1000, (cart = []));
+  hiddenCart();
+};
+
 const init = () => {
   initialRender();
-
+  cartBtnStatus();
+  renderCartItemQty();
   generoSelector.addEventListener("change", filterSelection);
   ciudadSelector.addEventListener("change", filterSelection);
   recintoSelector.addEventListener("change", filterSelection);
@@ -222,11 +299,10 @@ const init = () => {
   closeCart.addEventListener("click", hiddenCart);
   cardsContainer.addEventListener("click", addItemCart);
   document.addEventListener("DOMContentLoaded", renderCart);
-  // document.addEventListener("DOMContentLoaded", getSubtotal);
-  // document.addEventListener("DOMContentLoaded", getServiceCharge);
-  // document.addEventListener("DOMContentLoaded", getTotal);
   document.addEventListener("DOMContentLoaded", renderCartValues);
-  cartBtnStatus();
+  document.addEventListener("DOMContentLoaded", renderCartPoint);
+  cartContainer.addEventListener("click", qtyEntradas);
+  comprarBtn.addEventListener("click", finalizarCompra);
 };
 
 init();
