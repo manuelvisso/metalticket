@@ -66,8 +66,8 @@
           <img src="/assets/metalticket-removebg.png" alt="" />
         </div>
         <div class="navbar-container">
-          <nav>
-            <ul>
+          <nav class="navbar">
+            <ul class="navbar-ul">
               <li>
                 <a href="#inicio">Inicio</a>
               </li>
@@ -77,18 +77,22 @@
               <li>
                 <a href="#inicio">Iniciar Sesión</a>
               </li>
-              <li>
-                <div class="cart-qty-container">
-                  <span class="cart-item-qty">0</span>
-                </div>
-                <img
-                  class="icon-cart"
-                  src="/assets/carrito-de-compras.png"
-                  alt="Ver carrito"
-                />
-              </li>
             </ul>
           </nav>
+          <div class="icon-cart-container">
+            <img
+              class="icon-cart"
+              src="/assets/carrito-de-compras.png"
+              alt="Ver carrito"
+            />
+            <div class="cart-qty-container">
+              <span class="cart-item-qty">0</span>
+            </div>
+          </div>
+
+          <div class="menu-icon">
+            <img src="/assets/menu.png" alt="" />
+          </div>
         </div>
 
         <div class="overlay"></div>
@@ -109,6 +113,10 @@
     </div>
     <div class="section-container">
       <section class="filter-section">
+        <div class="filter-icon-container">
+          <p>Filtrar búsqueda</p>
+          <img class="filter-icon" src="/assets/filter.png" alt="" />
+        </div>
         <div class="filter-selection" id="eventos">
           <div class="filter filterA">
             <p class="filter-title">Géneros</p>

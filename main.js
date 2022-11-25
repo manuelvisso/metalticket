@@ -21,6 +21,10 @@ const cartBtnRestar = document.querySelector(".btn-menos");
 const cartBtnSumar = document.querySelector(".btn-mas");
 const cartBtnDelete = document.querySelector(".cart-btn-delete");
 const cartItemQty = document.querySelector(".cart-item-qty");
+const navbarList = document.querySelector(".navbar-ul");
+const navbarIcon = document.querySelector(".menu-icon");
+const filterIcon = document.querySelector(".filter-icon");
+const filterField = document.querySelector(".filter-selection");
 
 // SETEO LOCAL STORAGE
 
@@ -28,6 +32,12 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const saveLocalStorage = (cartList) => {
   localStorage.setItem("cart", JSON.stringify(cartList));
+};
+
+// MENU HAMBURGUESA
+
+const toggleMenu = () => {
+  navbarList.classList.toggle("open-menu");
 };
 
 // FILTRADO Y RENDERIZADO DE PRODUCTOS FILTRADOS
@@ -98,6 +108,10 @@ const deleteFilter = () => {
   initialRender();
 };
 
+const toggleFilter = () => {
+  filterField.classList.toggle("open-menu");
+};
+
 // MANEJO DEL CARRITO
 
 const showCart = () => {
@@ -105,6 +119,10 @@ const showCart = () => {
     cartContainer.style.visibility = "visible";
     overlay.style.visibility = "visible";
     body.style.overflow = "hidden";
+  }
+
+  if (navbarList.classList.contains("open-menu")) {
+    toggleMenu();
   }
 };
 
@@ -226,9 +244,9 @@ const cartTotalAmount = () => {
 };
 
 const renderCartValues = () => {
-  cartSubtotal.innerHTML = `ARS ${cartSubtotalAmount()}`;
-  cartServiceCharge.innerHTML = `ARS ${cartServiceChargesAmount()}`;
-  cartTotal.innerHTML = `ARS ${cartTotalAmount()}`;
+  cartSubtotal.innerHTML = `ARS ${cartSubtotalAmount().toFixed(2)}`;
+  cartServiceCharge.innerHTML = `ARS ${cartServiceChargesAmount().toFixed(2)}`;
+  cartTotal.innerHTML = `ARS ${cartTotalAmount().toFixed(2)}`;
 };
 
 // MANEJO DE CANTIDADES Y VACIADO DEL CARRITO
@@ -291,6 +309,8 @@ const init = () => {
   initialRender();
   cartBtnStatus();
   renderCartItemQty();
+  navbarIcon.addEventListener("click", toggleMenu);
+  filterIcon.addEventListener("click", toggleFilter);
   generoSelector.addEventListener("change", filterSelection);
   ciudadSelector.addEventListener("change", filterSelection);
   recintoSelector.addEventListener("change", filterSelection);
