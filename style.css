@@ -40,6 +40,26 @@ body {
   visibility: hidden;
 }
 
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid;
+  border-color: #b37e2e transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .section-container {
   background-color: var(--black);
   max-width: 1440px;
@@ -315,7 +335,7 @@ li img:hover {
 .hero {
   width: 100%;
   height: 50vh;
-  background-image: url(/assets/pexels-vishnu-r-nair-1105666.jpg);
+  background-image: url(/assets/bg/pexels-vishnu-r-nair-1105666.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -368,6 +388,7 @@ li img:hover {
   font-size: 48px;
   z-index: 1;
   text-align: center;
+  font-weight: bold;
 }
 
 .hero-btn {
@@ -405,12 +426,12 @@ li img:hover {
 }
 
 .filter-selection {
-  width: 90%;
+  width: 80%;
   height: 100px;
   background-color: var(--black);
   border-radius: 35px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   position: absolute;
   top: -50px;
@@ -455,9 +476,10 @@ li img:hover {
   border: none;
 }
 
-.filter-bin {
-  width: 20px;
-  padding-top: 25px;
+.btn-filter-txt {
+  color: var(--lightorange);
+  font-size: 16px;
+  font-weight: 400;
   cursor: pointer;
 }
 

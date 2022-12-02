@@ -223,6 +223,10 @@ const catalogoEventos = [
 ];
 
 //renderiza los eventos al inicar la página
+
 const initialRender = () => {
-  cardsContainer.innerHTML = catalogoEventos.map(renderCardShow).join("");
+  executeLoader();
+  setTimeout(() => {
+    cardsContainer.innerHTML = catalogoEventos.map(renderCardShow).join("");
+  }, 1000);
 };

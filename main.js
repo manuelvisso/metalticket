@@ -25,6 +25,36 @@ const navbarList = document.querySelector(".navbar-ul");
 const navbarIcon = document.querySelector(".menu-icon");
 const filterIcon = document.querySelector(".filter-icon");
 const filterField = document.querySelector(".filter-selection");
+const loader = document.querySelector("loader");
+
+// SWAL FIRE
+
+const successAddMsg = () => {
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Se agregó un producto al carrito",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};
+
+const successBuyMsg = () => {
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Su compra se realizó con éxito",
+    showConfirmButton: true,
+    confirmButtonColor: "#000000",
+    timer: 0,
+  });
+};
+
+// LOADER
+
+const executeLoader = () => {
+  cardsContainer.innerHTML = `<span class="loader"></span>`;
+};
 
 // SETEO LOCAL STORAGE
 
@@ -67,12 +97,14 @@ const renderCardShow = (show) => {
 };
 
 const renderErrorMsg = () => {
-  cardsContainer.innerHTML = `
-  <article class="error-msg">
-    <h3 class="error-msg-text">No se encuentran resultados para la busqueda realizada.</h3>
-    <h4 class="error-msg-text">Por favor, intente una nueva busqueda</h4>
-  </article>
-    `;
+  setTimeout(() => {
+    cardsContainer.innerHTML = `
+    <article class="error-msg">
+      <h3 class="error-msg-text">No se encuentran resultados para la busqueda realizada.</h3>
+      <h4 class="error-msg-text">Por favor, intente una nueva busqueda</h4>
+    </article>
+      `;
+  }, 500);
 };
 
 const filterResults = (genero, ciudad, recinto) => {
@@ -97,8 +129,10 @@ const filterSelection = () => {
     ciudadSelector.options[ciudadSelector.selectedIndex].value,
     recintoSelector.options[recintoSelector.selectedIndex].value,
   ];
-
-  filterResults(selectedOption[0], selectedOption[1], selectedOption[2]);
+  executeLoader();
+  setTimeout(() => {
+    filterResults(selectedOption[0], selectedOption[1], selectedOption[2]);
+  }, 1000);
 };
 
 const deleteFilter = () => {
@@ -110,6 +144,12 @@ const deleteFilter = () => {
 
 const toggleFilter = () => {
   filterField.classList.toggle("open-menu");
+};
+
+const applyFilter = () => {
+  generoSelector.addEventListener("change", filterSelection);
+  ciudadSelector.addEventListener("change", filterSelection);
+  recintoSelector.addEventListener("change", filterSelection);
 };
 
 // MANEJO DEL CARRITO
@@ -147,7 +187,7 @@ const renderCartItem = (cartItem) => {
 
   return `
     <article class="cart-card">
-        <img class="cart-btn-delete" data-id=${id} src="/assets/bin.png" alt="" srcset=""/>
+        <img class="cart-btn-delete" data-id=${id} src="/assets/icons/bin.png"/>
     <div class="cart-img-container">
         <img src=${img} alt="" srcset="" />
     </div>
@@ -157,9 +197,9 @@ const renderCartItem = (cartItem) => {
             <p class="card-show-ciudad">${ciudad}</p>
             <p class="card-show-date">${fecha}</p>
             <div class="qty-container">
-                <img class="btn-menos" data-id=${id} src="/assets/boton-menos.png" alt="" srcset=""/>
-                <p class="qty-text">${cantidad}</p>
-                <img class="btn-mas" data-id=${id} src="/assets/boton-mas.png" alt="" srcset=""/>
+              <img class="btn-menos" data-id=${id} src="/assets/icons/boton-menos.png"/>
+              <p class="qty-text">${cantidad}</p>
+              <img class="btn-mas" data-id=${id} src="/assets/icons/boton-mas.png"/>
             </div>
         </div>
     </div>
@@ -225,6 +265,7 @@ const addItemCart = (e) => {
   renderCartPoint();
   cartBtnStatus();
   renderCartItemQty();
+  successAddMsg();
 };
 
 const itemData = (id, artista, img, ciudad, precio, fecha) => {
@@ -254,8 +295,7 @@ const renderCartValues = () => {
 const restarQtyEntradas = (id) => {
   const cartItemSelected = cart.find((item) => item.id === id);
 
-  if (cartItemSelected.cantidad === 0) {
-    cartBtnRestar.classList.add("qty-btn-disabled");
+  if (cartItemSelected.cantidad === 1) {
     return;
   } else {
     cartItemSelected.cantidad -= 1;
@@ -294,13 +334,7 @@ const qtyEntradas = (e) => {
 // FINALIZAR COMPRA
 
 const finalizarCompra = () => {
-  Swal.fire({
-    position: "center",
-    icon: "success",
-    title: "Su compra se realizó con éxito",
-    showConfirmButton: false,
-    timer: 2000,
-  });
+  successBuyMsg();
   setTimeout(1000, (cart = []));
   hiddenCart();
 };
@@ -311,9 +345,7 @@ const init = () => {
   renderCartItemQty();
   navbarIcon.addEventListener("click", toggleMenu);
   filterIcon.addEventListener("click", toggleFilter);
-  generoSelector.addEventListener("change", filterSelection);
-  ciudadSelector.addEventListener("change", filterSelection);
-  recintoSelector.addEventListener("change", filterSelection);
+  applyFilter();
   deleteFilterBtn.addEventListener("click", deleteFilter);
   iconCart.addEventListener("click", showCart);
   closeCart.addEventListener("click", hiddenCart);
@@ -321,6 +353,7 @@ const init = () => {
   document.addEventListener("DOMContentLoaded", renderCart);
   document.addEventListener("DOMContentLoaded", renderCartValues);
   document.addEventListener("DOMContentLoaded", renderCartPoint);
+
   cartContainer.addEventListener("click", qtyEntradas);
   comprarBtn.addEventListener("click", finalizarCompra);
 };
