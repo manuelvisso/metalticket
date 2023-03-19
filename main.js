@@ -10,13 +10,13 @@ const overlay = document.querySelector(".overlay");
 const cartContainer = document.querySelector(".cart-container");
 const body = document.body;
 const cartCardContainer = document.querySelector(".render-cart-container");
-const addItemBtn = document.querySelectorAll(".add-ticket-btn");
+// const addItemBtn = document.querySelectorAll(".add-ticket-btn");
 const comprarBtn = document.querySelector(".cart-comprar-btn");
 const cartSubtotal = document.querySelector(".cart-subtotal");
 const cartServiceCharge = document.querySelector(".cart-service-charge");
 const cartTotal = document.querySelector(".cart-total");
 const cartPoint = document.querySelector(".cart-qty-container");
-const qtyControlContainer = document.querySelector(".qty-container");
+// const qtyControlContainer = document.querySelector(".qty-container");
 const cartBtnRestar = document.querySelector(".btn-menos");
 const cartBtnSumar = document.querySelector(".btn-mas");
 const cartBtnDelete = document.querySelector(".cart-btn-delete");
@@ -36,6 +36,8 @@ const successAddMsg = () => {
     title: "Se agregó un producto al carrito",
     showConfirmButton: false,
     timer: 1500,
+    background: "#000",
+    color: "#fff",
   });
 };
 
@@ -45,7 +47,9 @@ const successBuyMsg = () => {
     icon: "success",
     title: "Su compra se realizó con éxito",
     showConfirmButton: true,
-    confirmButtonColor: "#000000",
+    confirmButtonColor: "#ffbe5c",
+    background: "#000",
+    color: "#fff",
     timer: 0,
   });
 };
@@ -154,6 +158,16 @@ const applyFilter = () => {
 
 // MANEJO DEL CARRITO
 
+const updaterCart = () => {
+  saveLocalStorage(cart);
+  cartBtnStatus();
+  renderCart(cart);
+  renderCartValues();
+  renderCartPoint();
+  renderCartValues();
+  renderCartItemQty();
+};
+
 const showCart = () => {
   if ((cartContainer.style.visibility = "hidden")) {
     cartContainer.style.visibility = "visible";
@@ -258,14 +272,8 @@ const addItemCart = (e) => {
   } else {
     sumNewItem(item);
   }
-
-  saveLocalStorage(cart);
-  renderCart(cart);
-  renderCartValues();
-  renderCartPoint();
-  cartBtnStatus();
-  renderCartItemQty();
   successAddMsg();
+  updaterCart();
 };
 
 const itemData = (id, artista, img, ciudad, precio, fecha) => {
@@ -295,7 +303,35 @@ const renderCartValues = () => {
 const restarQtyEntradas = (id) => {
   const cartItemSelected = cart.find((item) => item.id === id);
 
+  const alertDeleteMsg = () => {
+    Swal.fire({
+      title: "¿Desea eliminar sus entradas del carrito?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#ffbe5c",
+      focusConfirm: true,
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar!",
+      cancelButtonText: "Cancelar",
+      background: "#000",
+      color: "#fff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCartItem(cartItemSelected);
+        updaterCart();
+        Swal.fire({
+          title: "Eliminada!",
+          text: "El carrito se ha actualizado",
+          confirmButtonColor: "#ffbe5c",
+          background: "#000",
+          color: "#fff",
+        });
+      }
+    });
+  };
+
   if (cartItemSelected.cantidad === 1) {
+    alertDeleteMsg();
     return;
   } else {
     cartItemSelected.cantidad -= 1;
@@ -307,10 +343,8 @@ const sumarQtyEntradas = (id) => {
   cartItemSelected.cantidad += 1;
 };
 
-const deleteCartItem = (id) => {
-  const cartItemSelected = cart.find((item) => item.id === id);
-
-  cart = cart.filter((item) => item.id !== cartItemSelected.id);
+const deleteCartItem = (existingProduct) => {
+  cart = cart.filter((item) => item.id !== existingProduct.id);
 };
 
 const qtyEntradas = (e) => {
@@ -321,14 +355,7 @@ const qtyEntradas = (e) => {
   } else if (e.target.classList.contains("cart-btn-delete")) {
     deleteCartItem(e.target.dataset.id);
   }
-
-  saveLocalStorage(cart);
-  cartBtnStatus();
-  renderCart(cart);
-  renderCartValues();
-  renderCartPoint();
-  renderCartValues();
-  renderCartItemQty();
+  updaterCart();
 };
 
 // FINALIZAR COMPRA
