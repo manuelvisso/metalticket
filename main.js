@@ -317,7 +317,7 @@ const restarQtyEntradas = (id) => {
       color: "#fff",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteCartItem(cartItemSelected);
+        deleteCartItem(id);
         updaterCart();
         Swal.fire({
           title: "Eliminada!",
@@ -343,8 +343,9 @@ const sumarQtyEntradas = (id) => {
   cartItemSelected.cantidad += 1;
 };
 
-const deleteCartItem = (existingProduct) => {
-  cart = cart.filter((item) => item.id !== existingProduct.id);
+const deleteCartItem = (id) => {
+  const cartItemSelected = cart.find((item) => item.id === id);
+  cart = cart.filter((item) => item.id !== cartItemSelected.id);
 };
 
 const qtyEntradas = (e) => {
