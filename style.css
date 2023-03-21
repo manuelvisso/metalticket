@@ -265,11 +265,6 @@ li img:hover {
   cursor: pointer;
 }
 
-.test {
-  cursor: not-allowed;
-  width: 40px;
-}
-
 .qty-btn-disabled {
   cursor: not-allowed;
 }
